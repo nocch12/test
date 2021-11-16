@@ -9,10 +9,14 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+      - image: circleci/python:3.7.3
+    environment:
+      - PIPENV_VENV_IN_PROJECT: true
+
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "e0:ac:84:47:d7:f5:b5:43:09:04:f1:0b:eb:c6:c2:9a"
       - checkout
       - run:
           name: "Say hello"
